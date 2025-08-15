@@ -1,4 +1,4 @@
-export interface Banner {
+export interface IBanner {
   id: string;
   images: {
     en: string;

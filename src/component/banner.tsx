@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import type { Banner } from "@/types/banner";
+import type { IBanner } from "@/types/banner";
 import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
@@ -11,7 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/images`;
 
 export default function Banner() {
-  const [banners, setBanners] = useState<Banner[]>([]);
+  const [banners, setBanners] = useState<IBanner[]>([]);
 
   useEffect(() => {
     fetch("/data/banner.json")
@@ -38,6 +38,8 @@ export default function Banner() {
               src={`${API_URL}/${banner.images.ko}`}
               alt={banner.images.ko}
               fill
+              sizes="100%"
+              priority
             />
             {banner.description && (
               <p className="absolute top-8 left-8 w-2/3 text-white">

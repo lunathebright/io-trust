@@ -10,9 +10,11 @@ export default function Home() {
       <main className="relative border w-[360px] h-[740px] overflow-hidden rounded-3xl">
         <Search />
         <Nav />
-        <Banner />
-        <Favorite />
-        <Service />
+        <div className="h-[calc(100%-140px)] overflow-y-scroll">
+          <Banner />
+          <Favorite />
+          <Service />
+        </div>
       </main>
     </div>
   );

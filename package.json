@@ -2,26 +2,24 @@
   "name": "io-trust",
   "version": "0.1.0",
   "private": true,
- "scripts": {
-  "dev": "env-cmd -f .env.dev next dev",
-  "dev:stage": "env-cmd -f .env.stage next dev",
-  "dev:prod": "env-cmd -f .env.prod next dev",
-
-  "build:dev": "env-cmd -f .env.dev next build",
-  "build:stage": "env-cmd -f .env.stage next build",
-  "build:prod": "env-cmd -f .env.prod next build",
-
-  "start:dev": "env-cmd -f .env.dev next start",
-  "start:stage": "env-cmd -f .env.stage next start",
-  "start:prod": "env-cmd -f .env.prod next start",
-
-  "lint": "next lint"
-},
+  "scripts": {
+    "dev": "env-cmd -f .env.dev next dev",
+    "dev:stage": "env-cmd -f .env.stage next dev",
+    "dev:prod": "env-cmd -f .env.prod next dev",
+    "build:dev": "env-cmd -f .env.dev next build",
+    "build:stage": "env-cmd -f .env.stage next build",
+    "build:prod": "env-cmd -f .env.prod next build",
+    "start:dev": "env-cmd -f .env.dev next start",
+    "start:stage": "env-cmd -f .env.stage next start",
+    "start:prod": "env-cmd -f .env.prod next start",
+    "lint": "next lint"
+  },
   "dependencies": {
     "@types/react-slick": "^0.23.13",
     "next": "15.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-icons": "^5.5.0",
     "react-slick": "^0.31.0",
     "slick-carousel": "^1.8.1"
   },
