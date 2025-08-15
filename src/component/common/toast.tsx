@@ -3,6 +3,7 @@ import Image from "next/image";
 import { IoClose } from "react-icons/io5";
 import { IDapp } from "@/types/dapp";
 import { IFavorite } from "@/types/favorite";
+import { useLang } from "@/hooks/useLang";
 
 interface props {
   data: IFavorite | IDapp;
@@ -12,6 +13,8 @@ interface props {
 const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/images`;
 
 export default function Toast({ data, setSelected }: props) {
+  const { crrLng } = useLang();
+
   const onClickClose = () => {
     setSelected(false);
   };
@@ -25,7 +28,12 @@ export default function Toast({ data, setSelected }: props) {
       <section className="absolute bottom-[80px] h-[420px] w-full rounded-t-2xl px-10 pt-10 bg-white">
         <div className="flex items-center">
           <div className="relative w-20 aspect-square mr-6 overflow-hidden rounded-lg shadow-xl/25">
-            <Image src={`${API_URL}/${data.icon}`} alt={data.name} fill />
+            <Image
+              src={`${API_URL}/${data.icon}`}
+              alt={data.name}
+              fill
+              sizes="100%"
+            />
           </div>
           <div>
             <p className="text-2xl font-bold">{data.name}</p>
@@ -37,7 +45,11 @@ export default function Toast({ data, setSelected }: props) {
         <p className="pt-3 pb-6">{data.url}</p>
         <div className="h-[160px] mb-[10px]">
           <p className="font-bold">Description</p>
-          <p>descdesc</p>
+          <p className="text-sm">
+            {(data.description as { [key in typeof crrLng]?: string })?.[
+              crrLng
+            ] ?? "-"}
+          </p>
         </div>
         <button
           onClick={onClickGoToService}

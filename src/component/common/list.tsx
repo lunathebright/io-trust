@@ -4,6 +4,7 @@ import { IDapp } from "@/types/dapp";
 import { IFavorite } from "@/types/favorite";
 import { FaBookmark } from "react-icons/fa";
 import Toast from "./toast";
+import { useLang } from "@/hooks/useLang";
 
 interface props {
   hasIcon?: boolean;
@@ -15,6 +16,7 @@ const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/images`;
 
 export default function List({ hasIcon = false, data, setFavorites }: props) {
   const [selected, setSelected] = useState(false);
+  const { crrLng } = useLang();
 
   const onClickList = () => {
     setSelected(true);
@@ -41,7 +43,11 @@ export default function List({ hasIcon = false, data, setFavorites }: props) {
         </div>
         <div className="flex-grow">
           <p className="text-2xl">{data.name}</p>
-          <p>desc</p>
+          <p className="min-w-[167px] max-w-[215px] line-clamp-1 text-sm">
+            {(data.description as { [key in typeof crrLng]?: string })?.[
+              crrLng
+            ] ?? "-"}
+          </p>
         </div>
         {hasIcon && (
           <div onClick={onClickRemoveFavorite} className="ml-4 cursor-pointer">

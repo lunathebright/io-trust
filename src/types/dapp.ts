@@ -1,3 +1,5 @@
+import { IVisibleFor } from "./common";
+
 export interface IDapp {
   id: string;
   name: string;
@@ -8,9 +10,5 @@ export interface IDapp {
     ko?: string;
   };
   networks?: string[];
-  visibleFor?: {
-    languages?: string[];
-    platforms?: string[];
-    environments?: string[];
-  };
+  visibleFor?: IVisibleFor;
 }
