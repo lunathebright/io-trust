@@ -5,12 +5,14 @@ import List from "./common/list";
 import { IDapp } from "@/types/dapp";
 import { useVisible } from "@/hooks/useVisible";
 
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/dapp.json`;
+
 export default function Service() {
   const [services, setServices] = useState<IDapp[]>([]);
   const filteredServices = useVisible(services);
 
   useEffect(() => {
-    fetch("/data/dapp.json")
+    fetch(API_URL)
       .then((res) => res.json())
       .then(setServices);
   }, []);

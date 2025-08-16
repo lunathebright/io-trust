@@ -9,14 +9,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useLang } from "@/hooks/useLang";
 
-const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/images`;
+const STATIC_URL = `${process.env.NEXT_PUBLIC_STATIC_URL}/images`;
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/banner.json`;
 
 export default function Banner() {
   const [banners, setBanners] = useState<IBanner[]>([]);
   const { crrLng } = useLang();
 
   useEffect(() => {
-    fetch("/data/banner.json")
+    fetch(API_URL)
       .then((res) => res.json())
       .then(setBanners);
   }, []);
@@ -40,7 +41,7 @@ export default function Banner() {
         {banners.map((banner) => (
           <div className="relative h-[160px] cursor-pointer" key={banner.id}>
             <Image
-              src={`${API_URL}/${banner.images[crrLng]}`}
+              src={`${STATIC_URL}/${banner.images[crrLng]}`}
               alt={banner.images[crrLng]}
               fill
               sizes="100%"

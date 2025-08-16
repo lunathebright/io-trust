@@ -4,11 +4,13 @@ import ListBox from "./common/listBox";
 import List from "./common/list";
 import { IFavorite } from "@/types/favorite";
 
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/favorite.json`;
+
 export default function Favorite() {
   const [favorites, setFavorites] = useState<IFavorite[]>([]);
 
   useEffect(() => {
-    fetch("/data/favorite.json")
+    fetch(API_URL)
       .then((res) => res.json())
       .then(setFavorites);
   }, []);

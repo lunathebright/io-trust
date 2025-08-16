@@ -13,7 +13,7 @@ interface props {
   setFavorites?: Dispatch<SetStateAction<IFavorite[]>>;
 }
 
-const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/images`;
+const STATIC_URL = `${process.env.NEXT_PUBLIC_STATIC_URL}/images`;
 
 export default function List({ hasIcon = false, data, setFavorites }: props) {
   const [selected, setSelected] = useState(false);
@@ -37,7 +37,7 @@ export default function List({ hasIcon = false, data, setFavorites }: props) {
       >
         <div className="relative w-16 aspect-square mr-4 overflow-hidden rounded-lg shadow-xl/25">
           <Image
-            src={`${API_URL}/${data.icon}`}
+            src={`${STATIC_URL}/${data.icon}`}
             alt={data.name}
             fill
             sizes="100%"

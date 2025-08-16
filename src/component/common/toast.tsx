@@ -10,7 +10,7 @@ interface props {
   setSelected: Dispatch<SetStateAction<boolean>>;
 }
 
-const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/images`;
+const STATIC_URL = `${process.env.NEXT_PUBLIC_STATIC_URL}/images`;
 
 export default function Toast({ data, setSelected }: props) {
   const { crrLng } = useLang();
@@ -29,7 +29,7 @@ export default function Toast({ data, setSelected }: props) {
         <div className="flex items-center">
           <div className="relative w-20 aspect-square mr-6 overflow-hidden rounded-lg shadow-xl/25">
             <Image
-              src={`${API_URL}/${data.icon}`}
+              src={`${STATIC_URL}/${data.icon}`}
               alt={data.name}
               fill
               sizes="100%"
