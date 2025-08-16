@@ -1,4 +1,5 @@
 import Banner from "@/component/banner";
+import Modal from "@/component/common/modal";
 import Favorite from "@/component/favorite";
 import Service from "@/component/service";
 import Nav from "@/component/temp/nav";

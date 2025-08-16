@@ -5,6 +5,7 @@ import { IFavorite } from "@/types/favorite";
 import { FaBookmark } from "react-icons/fa";
 import Toast from "./toast";
 import { useLang } from "@/hooks/useLang";
+import Modal from "./modal";
 
 interface props {
   hasIcon?: boolean;
@@ -16,6 +17,7 @@ const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/images`;
 
 export default function List({ hasIcon = false, data, setFavorites }: props) {
   const [selected, setSelected] = useState(false);
+  const [isModalOn, setIsModalOn] = useState(false);
   const { crrLng } = useLang();
 
   const onClickList = () => {
@@ -24,7 +26,7 @@ export default function List({ hasIcon = false, data, setFavorites }: props) {
 
   const onClickRemoveFavorite = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setFavorites?.((prev) => prev.filter((fav) => fav.id !== data.id));
+    setIsModalOn(true);
   };
 
   return (
@@ -57,6 +59,13 @@ export default function List({ hasIcon = false, data, setFavorites }: props) {
         )}
       </li>
       {selected && <Toast data={data} setSelected={setSelected} />}
+      {isModalOn && (
+        <Modal
+          setFavorites={setFavorites}
+          setIsModalOn={setIsModalOn}
+          id={data.id}
+        />
+      )}
     </>
   );
 }
