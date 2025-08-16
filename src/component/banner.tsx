@@ -14,6 +14,7 @@ const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/banner.json`;
 
 export default function Banner() {
   const [banners, setBanners] = useState<IBanner[]>([]);
+  const [crrSlide, setCrrSlide] = useState(0);
   const { crrLng } = useLang();
 
   useEffect(() => {
@@ -21,6 +22,10 @@ export default function Banner() {
       .then((res) => res.json())
       .then(setBanners);
   }, []);
+
+  const onClickBanner = (data: IBanner) => {
+    window.open(data.links[crrLng]);
+  };
 
   const settings = {
     dots: false,
@@ -33,13 +38,18 @@ export default function Banner() {
     autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
+    beforeChange: (current: number) => setCrrSlide(current),
   };
 
   return (
-    <div className="h-[160px]">
+    <div className="relative h-[160px]">
       <Slider {...settings}>
         {banners.map((banner) => (
-          <div className="relative h-[160px] cursor-pointer" key={banner.id}>
+          <div
+            onClick={() => onClickBanner(banner)}
+            className="relative h-[160px] cursor-pointer"
+            key={banner.id}
+          >
             <Image
               src={`${STATIC_URL}/${banner.images[crrLng]}`}
               alt={banner.images[crrLng]}
@@ -60,6 +70,9 @@ export default function Banner() {
           </div>
         ))}
       </Slider>
+      <div className="absolute bottom-1 right-1.5 px-2 py-0.5 bg-black/30 rounded-xl text-white text-xs">
+        {`${crrSlide + 1} / ${banners.length}`}
+      </div>
     </div>
   );
 }
